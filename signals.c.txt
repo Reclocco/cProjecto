@@ -1,0 +1,39 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+
+void signal_handler(int signum)
+{
+	printf("Signal cought: %d\n", signum);
+}
+
+int main(int argc, char* argv[])
+{
+	int i, out;
+
+	for(i=1; i<=64; i++)
+	{
+		
+		signal(i, signal_handler);
+	}
+	
+	while(1)
+	{	
+		for(i=1; i<=64; i++)
+		{
+		        if(i==9||i==18||i==19||i==32||i==33) continue;
+			out = kill(getpid(), i);
+			
+			if(out == 0)
+				printf("Signal: %d SUCCESS \n", i);
+			else
+				printf("Signal: %d ERROR \n", i);
+		}
+		sleep(1);
+		
+		break;
+	}
+	
+	return EXIT_SUCCESS;
+}

@@ -1,0 +1,21 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+#include <stdint.h>
+
+int main(int argc, char* argv[])
+{
+	pid_t pid = atoi(argv[1]);
+	int out;
+	printf("Wysylam sygnal SIGKILL do PID %d\n", pid);
+	
+	out = kill(pid, 9);
+	
+	if(out == 0)
+		printf("SUCCESS \n");
+	else
+		printf("ERROR \n");
+	
+	return EXIT_SUCCESS;
+}

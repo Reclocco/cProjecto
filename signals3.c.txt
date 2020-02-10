@@ -1,0 +1,23 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+
+int main(int argc, char* argv[])
+{
+	int i=0, pid;
+	pid = atoi(argv[1]);
+	
+	while(i < 10)
+	{
+		i++;
+		printf("Sending signal= %d \n", i);
+		
+		kill(pid, SIGUSR1);
+                kill(pid, SIGCONT);
+		
+        sleep(0);
+	}
+	
+	return EXIT_SUCCESS;
+}
